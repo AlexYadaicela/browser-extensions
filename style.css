@@ -1,0 +1,193 @@
+*,
+*::before, 
+*::after{
+    box-sizing: border-box;
+}
+
+*{
+    margin: 0; 
+}
+
+
+@font-face{
+    font-family: "NotoSans-Regular";
+    src: url(./assets/fonts/static/NotoSans-Regular.ttf)
+}
+
+@font-face{
+    font-family: "NotoSans-Medium";
+    src: url(./assets/fonts/static/NotoSans-Medium.ttf)
+}
+
+@font-face {
+    font-family: "NotoSans-Bold";
+    src: url(./assets/fonts/static/NotoSans-Bold.ttf); 
+}
+:root{
+    color-scheme: light dark;
+    
+    --clr-neutral-900: hsl(227, 75%, 14%); 
+    --clr-neutral-800: hsl(226, 25%, 17%);  
+    --clr-neutral-700: hsl(225, 23%, 24%);
+    --clr-neutral-600: hsl(226, 11%, 37%);
+    --clr-neutral-300: hsl(0, 0%, 78%);
+    --clr-neutral-200: hsl(217, 61%, 90%);
+    --clr-neutral-100: hsl(0, 0%, 93%);
+    --clr-neutral-0: hsl(200, 60%, 99%);
+    
+    --clr-red-700: hsl(3, 86%, 64%) ; 
+    --clr-red-500: hsl(3, 71%, 56%); 
+    --clr-red-400: hsl(3, 77%, 44%); 
+    
+
+    --primary-background: light-dark(#EEF8F9, #091540); 
+    --secondary-background: light-dark(var(--clr-neutral-0), var(--clr-neutral-800)); 
+    --bg-toggle-switch: light-dark(var(--clr-neutral-300), var(--clr-neutral-600));
+
+    --fs-100: 1rem;
+}
+
+
+:root{
+    &:has(.toggle-color-scheme[data-color="light"]){
+        color-scheme: light;
+        .extension-item{
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+    }
+
+    &:has(.toggle-color-scheme[data-color="dark"]){
+        color-scheme: dark;
+        .extension-item{
+            border: 1px solid var(--clr-neutral-600);
+        }
+    }
+    
+}
+
+
+html{
+    background-color: red;
+}
+
+body{
+    min-height: 100dvh;
+    font-family: "NotoSans-Regular", sans-serif;
+    font-optical-sizing: auto;
+    font-size: var(--fs-100);
+    
+    background-color: var(--primary-background);
+    
+    transition: color 0.5s, background-color 0.5s; 
+}
+
+img{
+    max-inline-size: 100%;
+    block-size: auto; 
+}
+
+menu{
+    list-style-type: none;
+    padding: 0; 
+    margin: 0; 
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.extension-list{
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 0.5rem; 
+}
+
+.toggle-color-scheme{
+    background-position: center;
+    background-repeat: none;
+    background-size: contain; 
+    width: 2rem; 
+    height: 2rem;
+}
+
+.toggle-color-scheme[data-color="light"]{
+    background-image: url(./assets/images/icon-moon.svg);
+}
+
+.toggle-color-scheme[data-color="dark"]{
+    background-image: url(./assets/images/icon-sun.svg);
+}
+
+.extension-item{
+    background-color: var(--secondary-background);
+    border-radius: 1rem;
+    height: 10rem;
+}
+
+.extension-description{
+    display: flex;
+    align-items: center;
+}
+
+.switch{
+    position: relative; 
+    display: inline-block; 
+    width: 40px; 
+    height: 20px;
+}
+
+.switch input{
+    opacity: 0; 
+    width: 0; 
+    height: 0;
+}
+
+.slider{
+    position: absolute; 
+    cursor: pointer;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    background-color: var(--bg-toggle-switch);
+    -webkit-transition: background-color .4s;
+    transition: background-color .4s; 
+}
+
+.slider:before{
+    position: absolute; 
+    content: ""; 
+    height: 17px;
+    width: 17px;
+    left: 2px;
+    bottom: 2px; 
+    background-color: var(--clr-neutral-0);
+    -webkit-transition: .4s;
+    transition: .4s; 
+}
+
+input:checked + .slider{
+    background-color: var(--clr-red-400);
+}
+
+/* acs */
+input:focus-visible + .slider{
+    outline: 2px solid var(--clr-red-400);
+    outline-offset: 2px;
+}
+
+input:checked + .slider:before{
+    --x: 19px; 
+    -webkit-transform: translateX(var(--x)); 
+    -ms-transform: translateX(var(--x));
+    transform: translateX(var(--x));
+}
+
+.slider.round{
+    border-radius: 35px;
+}
+
+.slider.round::before{
+    border-radius: 50%;
+}
+
