@@ -14,20 +14,22 @@
 <body>
 
   <header>
-    <img src="assets/images/logo.svg" alt="logo">
+    <img src="assets/images/logo.svg" alt="logo" class="page-logo">
     <div>
-      <button class="toggle-color-scheme" data-color="light"></button>
+      <button class="toggle-color-scheme" data-color="light">
+        <img src="./assets/images/icon-moon.svg" alt="icon moon">
+        <span class="sr-only">toggle color scheme</span>
+      </button>
     </div>
   </header>
 
   <main>
-    <!-- START: EXTESIONS LIST NAVIGATION -->
-    <div>
+    <!-- START: EXTEnSIONS LIST NAVIGATION -->
+    <div class="extension-list__nav">
       <h1>
         <span>Extensions List</span>
       </h1>
       <menu>
-
         <li><button id="view-all">All</button></li>
         <li><button id="view-active">Active</button></li>
         <li><button id="view-inactive">Inactive</button></li>
@@ -46,7 +48,7 @@
             class="extension-logo">
             <div class="extension-text">
               <h3><span>DevLens</span></h3>
-              <p><span>Quickly inspect page layouts and visualize elements boundaries.</span></p>
+              <p><span>Quickly inspect page layouts and visualize element boundaries.</span></p>
             </div>
         </div>
         <div class="extension-controls">

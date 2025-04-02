@@ -42,7 +42,10 @@
 
     --primary-background: light-dark(#EEF8F9, #091540); 
     --secondary-background: light-dark(var(--clr-neutral-0), var(--clr-neutral-800)); 
-    --bg-toggle-switch: light-dark(var(--clr-neutral-300), var(--clr-neutral-600));
+
+    --bg-toggle-switch: light-dark(var(--clr-neutral-100), var(--clr-neutral-600));
+
+    --clr-text: light-dark(var(--clr-neutral-600), var(--clr-neutral-300));
 
     --fs-100: 1rem;
 }
@@ -51,23 +54,18 @@
 :root{
     &:has(.toggle-color-scheme[data-color="light"]){
         color-scheme: light;
-        .extension-item{
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        header, .extension-item, menu li button, .extension-controls button{
+            box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, var(--clr-neutral-300) 0px 0px 0px 1px; 
         }
     }
 
     &:has(.toggle-color-scheme[data-color="dark"]){
         color-scheme: dark;
-        .extension-item{
-            border: 1px solid var(--clr-neutral-600);
+        header, .extension-item, menu li button, .extension-controls button{
+            box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
         }
     }
     
-}
-
-
-html{
-    background-color: red;
 }
 
 body{
@@ -77,8 +75,38 @@ body{
     font-size: var(--fs-100);
     
     background-color: var(--primary-background);
-    
-    transition: color 0.5s, background-color 0.5s; 
+    transition: background-color 0.5s; 
+}
+
+header, main{
+    max-width: 60rem;
+    margin-inline: auto;
+}
+
+@media (max-width: 30rem){
+    header, main{
+        margin-inline: 1rem;
+    }
+}
+
+header{
+    margin-block-start: 2rem; 
+    padding-block: 0.4rem; 
+    padding-inline: 0.4rem;
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--secondary-background); 
+    border-radius: 1rem;
+}
+
+.extension-list__nav{
+    margin-block: 2rem;
+}
+
+.extension-list__nav h1{
+    text-align: center;
+    margin-block-end: 1rem;
 }
 
 img{
@@ -89,7 +117,21 @@ img{
 menu{
     list-style-type: none;
     padding: 0; 
-    margin: 0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;   
+}
+
+menu li button{
+    background-color: transparent;
+    border: 0;
+    border-radius: 20px;
+    background-color: var(--secondary-background);
+    padding-block: 0.5rem;
+    padding-inline: 1.3rem;
+    font-size: 0.975rem; 
+    font-family: "NotoSans-Medium";
 }
 
 button:hover{
@@ -98,35 +140,57 @@ button:hover{
 
 .extension-list{
     display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 0.5rem; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.8rem; 
 }
 
 .toggle-color-scheme{
-    background-position: center;
-    background-repeat: none;
-    background-size: contain; 
-    width: 2rem; 
-    height: 2rem;
-}
-
-.toggle-color-scheme[data-color="light"]{
-    background-image: url(./assets/images/icon-moon.svg);
-}
-
-.toggle-color-scheme[data-color="dark"]{
-    background-image: url(./assets/images/icon-sun.svg);
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    border: 0; 
+    border-radius: 10px;
+    background-color: var(--bg-toggle-switch);
+    width: 3rem; 
+    height: 3rem;
 }
 
 .extension-item{
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between;
     background-color: var(--secondary-background);
     border-radius: 1rem;
-    height: 10rem;
+    height: 12rem;
+    transition: background-color 0.5s; 
+    padding: 1rem; 
 }
 
 .extension-description{
     display: flex;
+    align-items: start;
+    gap: 1rem; 
+}
+
+.extension-text p{
+    color: var(--clr-text);
+    transition: color 0.5s; 
+    padding-block-start: 0.5rem; 
+}
+
+.extension-controls{
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+}
+
+.extension-controls button{
+    background-color: transparent;
+    font-family: "NotoSans-Medium", sans-serif;
+    border: 0; 
+    border-radius: 20px;
+    width: 5rem;
+    height: 2rem;
 }
 
 .switch{
@@ -189,5 +253,10 @@ input:checked + .slider:before{
 
 .slider.round::before{
     border-radius: 50%;
+}
+
+.sr-only{
+    position: absolute;
+    visibility: hidden;
 }
 
