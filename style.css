@@ -92,7 +92,7 @@ header, main{
 header{
     margin-block-start: 2rem; 
     padding-block: 0.4rem; 
-    padding-inline: 0.4rem;
+    padding-inline: 1rem;
     display: flex; 
     align-items: center;
     justify-content: space-between;
@@ -133,7 +133,13 @@ menu li button{
     font-size: 0.975rem; 
     font-family: "NotoSans-Medium";
 }
-
+menu li button.active{
+    background-color: var(--clr-red-500);
+}
+button:focus-visible{
+    outline: 2px solid var(--clr-red-700);
+    outline-offset: 2px;
+}
 button:hover{
     cursor: pointer;
 }
@@ -193,6 +199,11 @@ button:hover{
     height: 2rem;
 }
 
+/* acs */
+.extension-controls button:hover{
+    background-color: var(--clr-red-500);
+}
+
 .switch{
     position: relative; 
     display: inline-block; 
@@ -236,7 +247,7 @@ input:checked + .slider{
 
 /* acs */
 input:focus-visible + .slider{
-    outline: 2px solid var(--clr-red-400);
+    outline: 2px solid var(--clr-red-700);
     outline-offset: 2px;
 }
 
